@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  replay-service:
+    build: .
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_ADDRESS=redis:6379
+      - CONSUMER_GROUP_NAME=replay-consumers
+      - GRPC_TARGETS=order:order-service:50051,payment:payment-service:50052
+      - METRICS_ENABLED=true
+      - METRICS_PORT=9090
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  order-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.target-service
+    environment:
+      - PORT=50051
+    ports:
+      - "50051:50051"
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+
+volumes:
+  redis-data:
+  prometheus-data:
+  grafana-data:

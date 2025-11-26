@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package events;
+
+option go_package = "github.com/SamarthSRao/cdc-replay/proto";
+
+import "google/protobuf/timestamp.proto";
+
+// EventService defines the gRPC service for event delivery
+service EventService {
+  rpc ProcessEvent(EventRequest) returns (EventResponse);
+  rpc ProcessEventBatch(EventBatchRequest) returns (EventBatchResponse);
+}
+
+// EventRequest represents a single CDC event
+message EventRequest {
+  string event_id = 1;
+  string aggregate_type = 2;
+  string aggregate_id = 3;
+  string event_type = 4;
+  bytes payload = 5;
+  google.protobuf.Timestamp timestamp = 6;
+  map<string, string> metadata = 7;
+}
+
+// EventResponse confirms event processing
+message EventResponse {
+  bool success = 1;
+  string message = 2;
+  string error_code = 3;
+}
+
+// EventBatchRequest for batch processing
+message EventBatchRequest {
+  repeated EventRequest events = 1;
+}
+
+// EventBatchResponse for batch processing
+message EventBatchResponse {
+  int32 processed = 1;
+  int32 failed = 2;
+  repeated string failed_event_ids = 3;
+}
