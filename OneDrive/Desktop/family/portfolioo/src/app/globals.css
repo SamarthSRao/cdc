@@ -7,6 +7,18 @@
   --color-foreground: #ededed;
   --color-border: rgba(255, 255, 255, 0.1);
   --color-glass: rgba(255, 255, 255, 0.03);
+  
+  /* macOS Style Variables */
+  --window-bg: #121212;
+  --titlebar-bg: rgba(30, 30, 30, 0.4);
+  --window-border-focused: rgba(255, 255, 255, 0.12);
+  --window-border-unfocused: rgba(255, 255, 255, 0.08);
+  --separator: rgba(255, 255, 255, 0.06);
+  
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --text-faint: rgba(255, 255, 255, 0.2);
 }
 
 :root {

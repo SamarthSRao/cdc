@@ -16,11 +16,17 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-10 flex items-center justify-end px-6 z-50 pointer-events-none">
-      <div className="flex items-center gap-6 font-mono text-[13px] text-foreground/40 pointer-events-auto">
+    <header className="fixed top-0 left-0 right-0 h-7 flex items-center justify-between px-4 z-50 bg-background/80 backdrop-blur-md border-b border-white/10">
+      <div className="flex items-center gap-2">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-white/90">Samarth S</span>
+        <span className="text-white/10 text-[9px]">|</span>
+        <span className="font-mono text-[10px] tracking-wide text-white/30">Desktop</span>
+      </div>
+
+      <div className="flex items-center gap-4 font-mono text-[11px] text-foreground/30 pointer-events-auto">
         {/* Visitors/Metric */}
-        <div className="flex items-center gap-1.5 hover:text-foreground/80 transition-colors cursor-default">
-          <ArrowUp className="w-3.5 h-3.5" />
+        <div className="flex items-center gap-1 hover:text-foreground/80 transition-colors cursor-default">
+          <ArrowUp className="w-2.5 h-2.5" />
           <span>651</span>
         </div>
 

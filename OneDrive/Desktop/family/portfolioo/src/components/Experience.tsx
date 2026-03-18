@@ -3,43 +3,77 @@
 import { motion } from "framer-motion";
 
 export default function Experience({ onClose }: { onClose?: () => void }) {
+    const experiences = [
+        {
+            company: "Exo Technologies",
+            role: "Software Engineer",
+            period: "Jun 2025 – Present",
+            description: "Building Solana-based protocols and infrastructure solutions.",
+            stack: "Solana · Rust · TypeScript · Anchor"
+        },
+
+    ];
+
     return (
         <motion.div
             drag
             dragMomentum={false}
             whileDrag={{ scale: 1.02, zIndex: 100 }}
             initial={{ zIndex: 10 }}
-            className="aspect-square w-[400px] glass rounded-2xl flex flex-col relative overflow-hidden cursor-grab active:cursor-grabbing bg-background/50 backdrop-blur-xl border border-white/10 shadow-2xl"
+            className="w-[610px] h-[515px] flex flex-col relative overflow-hidden cursor-grab active:cursor-grabbing backdrop-blur-3xl"
+            style={{
+                backgroundColor: "#111111",
+                borderRadius: "10px",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
+            }}
         >
-            {/* Top Window Bar (The Shell Header) */}
-            <div className="flex-none flex items-center h-9 px-4 border-b border-white/5 bg-white/5 relative select-none">
+            {/* Top Windows/Mac OS Bar */}
+            <div className="flex-none flex items-center h-8 px-4 border-b border-white/[0.05]  relative select-none">
                 <div className="flex items-center gap-1.5 z-10">
-                    <button onClick={onClose} className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 transition-colors cursor-pointer" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                    <button onClick={onClose} className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 transition-colors cursor-pointer outline-none" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/[0.08]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/[0.08]" />
                 </div>
-                <p className="text-[10px] font-mono text-white/40 tracking-widest absolute left-1/2 -translate-x-1/2 uppercase">
-                    experience
+                <p className="text-[10px] font-mono text-white/40 tracking-[0.2em] absolute left-1/2 -translate-x-1/2 uppercase pointer-events-none">
+                    EXPERIENCE
                 </p>
             </div>
 
-            {/* Scrollable Content (The View) */}
-            <div className="flex-1 overflow-y-auto p-6 font-sans scrollbar-hide">
-                <div className="space-y-6">
-                    {/* Job Entry Example */}
-                    <div className="group cursor-pointer border-b border-white/5 pb-4">
-                        <div className="flex items-baseline justify-between gap-2 mb-1">
-                            <div className="flex flex-col min-w-0">
-                                <span className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">Exo Technologies</span>
-                                <span className="font-mono text-[10px] text-white/50">Software Engineer</span>
-                            </div>
-                            <span className="font-mono text-[10px] text-white/30 whitespace-nowrap">2025 – Pres.</span>
-                        </div>
-                        <p className="text-xs text-white/70 leading-relaxed">Building Solana-based protocols and infrastructure.</p>
-                    </div>
+            {/* Scrollable Content */}
+            <div className="flex-1 bg-[#1a1a1a]/40 overflow-y-auto p-8 pt-6 font-sans scrollbar-hide">
+                <section className="opacity-100">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6 text-white/20">
+                        EXPERIENCE
+                    </p>
 
-                    {/* Add more job entries here following the same pattern */}
-                </div>
+                    <div className="w-full h-[1px] bg-white/[0.06] my-8" />
+                    <div className="space-y-0">
+                        {experiences.map((exp, index) => (
+                            <div key={index} className="group py-6 border-b border-white/[0.04] last:border-0">
+                                <div className="flex items-baseline justify-between gap-4 mb-2">
+                                    <div className="flex items-baseline gap-2 min-w-0">
+                                        <span className="text-[15px] font-bold text-white group-hover:text-blue-400 transition-colors truncate">
+                                            {exp.company}
+                                        </span>
+                                        <span className="font-mono text-[10px] text-white/40 truncate">
+                                            {exp.role}
+                                        </span>
+                                    </div>
+                                    <span className="font-mono text-[10px] text-white/20 flex-none uppercase tracking-widest">
+                                        {exp.period}
+                                    </span>
+                                </div>
+                                <p className="text-[12px] text-white/60 mb-2 leading-relaxed">
+                                    {exp.description}
+                                </p>
+                                <p className="font-mono text-[10px] text-white/[0.15] tracking-wide">
+                                    {exp.stack}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
             </div>
         </motion.div>
     );
