@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, startOfWeek, endOfWeek } from "date-fns";
 
-export default function Visitors() {
+export default function Calendar() {
   const today = new Date();
   const monthStart = startOfMonth(today);
   const monthEnd = endOfMonth(today);

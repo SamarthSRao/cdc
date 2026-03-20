@@ -56,15 +56,17 @@ function DockIcon({
   );
 }
 
-export default function Dock({ onToggleAbout, onToggleExperience, onToggleProjects, onToggleContact, activeAbout, activeExperience, activeProjects, activeContact }: {
+export default function Dock({ onToggleAbout, onToggleExperience, onToggleProjects, onToggleContact, onToggleResume, activeAbout, activeExperience, activeProjects, activeContact, activeResume }: {
   onToggleAbout?: () => void,
   onToggleExperience?: () => void,
   onToggleProjects?: () => void,
   onToggleContact?: () => void,
+  onToggleResume?: () => void,
   activeAbout?: boolean,
   activeExperience?: boolean,
   activeProjects?: boolean,
-  activeContact?: boolean
+  activeContact?: boolean,
+  activeResume?: boolean
 }) {
   const mouseX = useMotionValue(Infinity);
 
@@ -101,7 +103,7 @@ export default function Dock({ onToggleAbout, onToggleExperience, onToggleProjec
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
         </DockIcon>
 
-        <DockIcon mouseX={mouseX}>
+        <DockIcon mouseX={mouseX} active={activeResume} onClick={onToggleResume}>
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 12h-5"></path><path d="M15 8h-5"></path><path d="M19 17V5a2 2 0 0 0-2-2H4"></path><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"></path></svg>
         </DockIcon>
 

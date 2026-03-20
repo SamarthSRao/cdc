@@ -5,13 +5,12 @@ import { motion } from "framer-motion";
 export default function Experience({ onClose }: { onClose?: () => void }) {
     const experiences = [
         {
-            company: "Exo Technologies",
-            role: "Software Engineer",
-            period: "Jun 2025 – Present",
-            description: "Building Solana-based protocols and infrastructure solutions.",
-            stack: "Solana · Rust · TypeScript · Anchor"
+            company: "Education",
+            role: "CS Student @ JSS Academy",
+            period: "2023 – 2027",
+            description: "Focusing on Backend Development, Distributed Systems, and High-Performance Computing using Go, Java, and PostgreSQL.",
+            stack: "Go · Java · PostgreSQL · Kubernetes"
         },
-
     ];
 
     return (

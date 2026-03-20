@@ -8,14 +8,19 @@ export default function Project({ onClose }: { onClose?: () => void }) {
 
     const personalProjects = [
         {
-            title: "Solana RPC Proxy",
-            description: "High-performance load balancer and caching proxy for Solana RPC nodes, reducing latency and costs for dApps.",
-            stack: "Rust · Tokio · Redis · Solana"
+            title: "Jss Rooms",
+            description: "Campus Connectivity and Event Management Website with real-time chat and digital ticketing for college festivals.",
+            stack: "Go · WebSockets · PostgreSQL · React 19"
         },
         {
-            title: "AO Fair Launch",
-            description: "Decentralized fair-launch token platform on Arweave's AO compute protocol, featuring automated market making.",
-            stack: "Lua · Arweave · AO · TypeScript"
+            title: "Eco-Quest",
+            description: "Sustainable Activity Tracker & Rewards Platform to incentivize eco-friendly living using activity milestones.",
+            stack: "Node.js · MongoDB · Express · React 18"
+        },
+        {
+            title: "Inter Prep",
+            description: "Collaborative Interview Preparation & Knowledge Sharing Platform to master technical interview questions.",
+            stack: "Golang · Gin · PostgreSQL · JWT"
         }
     ];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Twitter, Github, MapPin } from "lucide-react";
+import { Twitter, Github, MapPin, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function About({ onClose }: { onClose?: () => void }) {
@@ -37,7 +37,7 @@ export default function About({ onClose }: { onClose?: () => void }) {
 
           <div className="flex-grow mb-4  ">
             <h1 className="text-1xl md:text-3xl font-bold tracking-tight mb-1 text-white/90">
-              Samarth S
+              Samarth S Rao
             </h1>
 
             <p className="text-[10px] text-white/40 tracking-widest uppercase mb-9 ">
@@ -64,19 +64,19 @@ export default function About({ onClose }: { onClose?: () => void }) {
                 className="w-10 h-10 rounded-lg object-cover bg-white/5"
               />
               <div className="flex flex-col">
-                <span className="text-xs font-mono font-bold uppercase text-white/90">Samarth S</span>
+                <span className="text-xs font-mono font-bold uppercase text-white/90">Samarth S Rao</span>
                 <span className="text-[10px] font-mono text-white/40 flex items-center gap-1 uppercase">
-                  <MapPin size={10} /> Waterloo, ON
+                  <MapPin size={10} /> Bengaluru, India
                 </span>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <a href="#" className="text-white/40 hover:text-white transition-colors">
+              <a href="https://github.com/SamarthSRao" className="text-white/40 hover:text-white transition-colors">
                 <Github size={18} />
               </a>
-              <a href="#" className="text-white/40 hover:text-white transition-colors">
-                <Twitter size={18} />
+              <a href="https://linkedin.com" className="text-white/40 hover:text-white transition-colors">
+                <Linkedin size={18} />
               </a>
             </div>
           </div>
