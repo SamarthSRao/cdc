@@ -41,20 +41,14 @@ export default function Project({ onClose }: { onClose?: () => void }) {
 
     return (
         <motion.div
-            drag
+            drag={typeof window !== 'undefined' && window.innerWidth > 768}
             dragMomentum={false}
             whileDrag={{ scale: 1.02, zIndex: 100 }}
             initial={{ zIndex: 10 }}
-            className="w-[690px] h-[515px] flex flex-col relative overflow-hidden cursor-grab active:cursor-grabbing backdrop-blur-3xl"
-            style={{
-                backgroundColor: "#111111",
-                borderRadius: "10px",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
-                boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
-            }}
+            className="w-full md:w-[690px] md:h-[515px] flex flex-col relative overflow-hidden md:cursor-grab active:cursor-grabbing bg-transparent md:backdrop-blur-3xl md:bg-[#111111] md:rounded-[10px] md:border md:border-white/[0.08] md:shadow-[0_40px_80px_rgba(0,0,0,0.9),0_0_0_0.5px_rgb(0,0,0)]"
         >
-            {/* Top Windows/Mac OS Bar */}
-            <div className="flex-none flex items-center h-8 px-2 border-b border-white/[0.05] relative select-none">
+            {/* Top Windows/Mac OS Bar - Hidden on mobile */}
+            <div className="hidden md:flex flex-none items-center h-8 px-2 border-b border-white/[0.05] relative select-none">
                 <div className="flex items-center gap-1.5 z-10">
                     <button
                         onClick={onClose}
@@ -85,7 +79,7 @@ export default function Project({ onClose }: { onClose?: () => void }) {
             </div>
 
             {/* Content section */}
-            <div className="flex-1 overflow-y-auto p-4 pt-4 font-sans scrollbar-hide bg-[#1a1a1a]/40">
+            <div className="flex-1 overflow-y-auto p-4 pt-4 font-sans scrollbar-hide bg-transparent md:bg-[#1a1a1a]/40">
                 <div className="space-y-0">
                     <AnimatePresence mode="wait">
                         <motion.div

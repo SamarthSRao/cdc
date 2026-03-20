@@ -27,28 +27,49 @@ export default function Home() {
       <div className="fixed inset-0 bg-dot-grid pointer-events-none opacity-40 -z-10" />
 
       {/* Background/Utility Widgets */}
-      <Books />
+      <div className="hidden md:block">
+        <Books />
+      </div>
 
       {/* Main Workspace Layout */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 px-4 sm:px-8 h-[calc(100vh-160px)] pointer-events-none">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 px-4 sm:px-8 md:h-[calc(100vh-160px)]">
         
-        {/* Top Right Corner: Calendar */}
-        <div className="absolute top-24 right-4 sm:right-8 w-64 pointer-events-auto">
+        {/* Desktop Widgets (Hidden on Mobile) */}
+        <div className="hidden md:block absolute top-24 right-4 sm:right-8 w-64 pointer-events-auto">
           <Calendar />
         </div>
-
-        {/* Bottom Left Corner: Spotify */}
-        <div className="absolute bottom-16 left-4 sm:left-8 w-[272px] pointer-events-auto">
+        <div className="hidden md:block absolute bottom-16 left-4 sm:left-8 w-[272px] pointer-events-auto">
           <Spotify />
         </div>
-
-        {/* Bottom Right Corner: Git (GitHub Graph) */}
-        <div className="absolute bottom-16 right-4 sm:right-8 w-[500px] pointer-events-auto">
+        <div className="hidden md:block absolute bottom-16 right-4 sm:right-8 w-[500px] pointer-events-auto">
           <GitHubGraph />
         </div>
 
-        {/* Center Slot: All Dock Components (About, Experience, etc.) */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {/* Mobile View: Vertical Scrollable List */}
+        <div className="flex md:hidden flex-col gap-12 pb-24">
+          <section id="about-section">
+            <About />
+          </section>
+          <div className="w-full h-px bg-white/5" />
+          <section id="experience-section">
+            <Experience />
+          </section>
+          <div className="w-full h-px bg-white/5" />
+          <section id="projects-section">
+            <Project />
+          </section>
+          <div className="w-full h-px bg-white/5" />
+          <section id="contact-section">
+            <Contact />
+          </section>
+          <div className="w-full h-px bg-white/5" />
+          <section id="resume-section">
+            <Resume />
+          </section>
+        </div>
+
+        {/* Desktop View: Center Slot for Windows */}
+        <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
           <div className="pointer-events-auto relative flex items-center justify-center">
             <AnimatePresence mode="popLayout">
               {showAbout && (
@@ -116,19 +137,21 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Floating Navigation Dock */}
-      <Dock
-        onToggleAbout={() => setShowAbout((prev) => !prev)}
-        onToggleExperience={() => setShowExperience((prev) => !prev)}
-        onToggleProjects={() => setShowProjects((prev) => !prev)}
-        onToggleContact={() => setShowContact((prev) => !prev)}
-        onToggleResume={() => setShowResume((prev) => !prev)}
-        activeAbout={showAbout}
-        activeExperience={showExperience}
-        activeProjects={showProjects}
-        activeContact={showContact}
-        activeResume={showResume}
-      />
+      {/* Floating Navigation Dock - Hidden on Mobile */}
+      <div className="hidden md:block">
+        <Dock
+          onToggleAbout={() => setShowAbout((prev) => !prev)}
+          onToggleExperience={() => setShowExperience((prev) => !prev)}
+          onToggleProjects={() => setShowProjects((prev) => !prev)}
+          onToggleContact={() => setShowContact((prev) => !prev)}
+          onToggleResume={() => setShowResume((prev) => !prev)}
+          activeAbout={showAbout}
+          activeExperience={showExperience}
+          activeProjects={showProjects}
+          activeContact={showContact}
+          activeResume={showResume}
+        />
+      </div>
     </main>
   );
 }

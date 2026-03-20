@@ -6,20 +6,14 @@ import { Mail, Github, Twitter, MapPin, Globe, Linkedin, ExternalLink } from "lu
 export default function Resume({ onClose }: { onClose?: () => void }) {
   return (
     <motion.div
-      drag
+      drag={typeof window !== 'undefined' && window.innerWidth > 768}
       dragMomentum={false}
       whileDrag={{ scale: 1.01, zIndex: 100 }}
       initial={{ zIndex: 10 }}
-      className="w-[700px] h-[600px] flex flex-col relative overflow-hidden cursor-grab active:cursor-grabbing backdrop-blur-3xl"
-      style={{
-        backgroundColor: "#111111",
-        borderRadius: "12px",
-        border: "1px solid rgba(255, 255, 255, 0.08)",
-        boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
-      }}
+      className="w-full md:w-[700px] md:h-[600px] flex flex-col relative overflow-hidden md:cursor-grab active:cursor-grabbing bg-transparent md:backdrop-blur-3xl md:bg-[#111111] md:rounded-[12px] md:border md:border-white/[0.08] md:shadow-[0_40px_80px_rgba(0,0,0,0.9),0_0_0_0.5px_rgb(0,0,0)]"
     >
-      {/* Top Bar */}
-      <div className="flex-none flex items-center h-8 px-4 border-b border-white/[0.05] relative select-none">
+      {/* Top Bar - Hidden on mobile */}
+      <div className="hidden md:flex flex-none items-center h-8 px-4 border-b border-white/[0.05] relative select-none">
         <div className="flex items-center gap-1.5 z-10">
           <button
             onClick={onClose}
@@ -34,7 +28,7 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-8 pt-6 font-sans scrollbar-hide bg-[#1a1a1a]/40 selection:bg-white/10 selection:text-white">
+      <div className="flex-1 overflow-y-auto p-8 pt-6 font-sans scrollbar-hide bg-transparent md:bg-[#1a1a1a]/40 selection:bg-white/10 selection:text-white">
         {/* Header */}
         <header className="mb-10 text-center">
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Samarth S Rao</h1>

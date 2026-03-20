@@ -15,20 +15,14 @@ export default function Experience({ onClose }: { onClose?: () => void }) {
 
     return (
         <motion.div
-            drag
+            drag={typeof window !== 'undefined' && window.innerWidth > 768}
             dragMomentum={false}
             whileDrag={{ scale: 1.02, zIndex: 100 }}
             initial={{ zIndex: 10 }}
-            className="w-[610px] h-[515px] flex flex-col relative overflow-hidden cursor-grab active:cursor-grabbing backdrop-blur-3xl"
-            style={{
-                backgroundColor: "#111111",
-                borderRadius: "10px",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
-                boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
-            }}
+            className="w-full md:w-[610px] md:h-[515px] flex flex-col relative overflow-hidden md:cursor-grab active:cursor-grabbing bg-transparent md:backdrop-blur-3xl md:bg-[#111111] md:rounded-[10px] md:border md:border-white/[0.08] md:shadow-[0_40px_80px_rgba(0,0,0,0.9),0_0_0_0.5px_rgb(0,0,0)]"
         >
-            {/* Top Windows/Mac OS Bar */}
-            <div className="flex-none flex items-center h-8 px-4 border-b border-white/[0.05]  relative select-none">
+            {/* Top Windows/Mac OS Bar - Hidden on mobile */}
+            <div className="hidden md:flex flex-none items-center h-8 px-4 border-b border-white/[0.05] relative select-none">
                 <div className="flex items-center gap-1.5 z-10">
                     <button onClick={onClose} className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 transition-colors cursor-pointer outline-none" />
                     <div className="w-2.5 h-2.5 rounded-full bg-white/[0.08]" />
@@ -40,7 +34,7 @@ export default function Experience({ onClose }: { onClose?: () => void }) {
             </div>
 
             {/* Scrollable Content */}
-            <div className="flex-1 bg-[#1a1a1a]/40 overflow-y-auto p-8 pt-6 font-sans scrollbar-hide">
+            <div className="flex-1 bg-transparent md:bg-[#1a1a1a]/40 overflow-y-auto p-8 pt-6 font-sans scrollbar-hide">
                 <section className="opacity-100">
                     <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6 text-white/20">
                         EXPERIENCE
