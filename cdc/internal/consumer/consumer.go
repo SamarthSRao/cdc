@@ -330,10 +330,10 @@ func (rc *ReplayConsumer) claimPendingMessages(ctx context.Context) {
 	}
 
 	idleThreshold := 60 * time.Second
-	now := time.Now()
 
 	for _, msg := range pending {
-		if now.Sub(msg.Idle) > idleThreshold {
+		// Idle is how long the message has already been pending, not a timestamp.
+		if msg.Idle > idleThreshold {
 			// Claim this message
 			claimed, err := rc.redisClient.XClaim(ctx, &redis.XClaimArgs{
 				Stream:   rc.config.Redis.StreamKey,
