@@ -15,9 +15,13 @@ import (
 	"gorm.io/gorm"
 )
 
+// defaultJWTSecret is the development signing key used when JWT_SECRET is unset.
+// It matches the previous in-code value so existing local tokens keep verifying.
+const defaultJWTSecret = "your-secret-key"
+
 var (
 	DB        *gorm.DB
-	JWTSecret = []byte("your-secret-key") // In production, use environment variable
+	JWTSecret = []byte(defaultJWTSecret)
 	upgrader  = websocket.Upgrader{
 		CheckOrigin: func(r *http.Request) bool { return true },
 	}
@@ -27,6 +31,10 @@ func initDB() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Println("No .env file found, using system env")
+	}
+
+	if secret := os.Getenv("JWT_SECRET"); secret != "" {
+		JWTSecret = []byte(secret)
 	}
 
 	dsn := os.Getenv("DATABASE_URL")

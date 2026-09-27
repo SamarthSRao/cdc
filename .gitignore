@@ -1,0 +1,53 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Personal documents and local machine folders
+*.doc
+*.docx
+OneDrive/
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.pdb
+*.obj
+*.o
+*.test
+
+# Build outputs
+bin/
+dist/
+build/
+out/
+.next/
+node_modules/
+coverage/
+vendor/
+*.tsbuildinfo
+next-env.d.ts
+
+# OS junk
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor junk
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
